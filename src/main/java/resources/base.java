@@ -8,6 +8,9 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,7 +23,7 @@ public WebDriver initializeDriver() throws IOException
 {
 	
  prop= new Properties();
-FileInputStream fis=new FileInputStream("C:\\Users\\abhaysingh09\\Downloads\\E2EProject\\E2EProject\\src\\main\\java\\resources\\data.properties");
+FileInputStream fis=new FileInputStream(".\\src\\main\\java\\resources\\data.properties");
 
 prop.load(fis);
 String browserName=prop.getProperty("browser");
@@ -28,9 +31,10 @@ System.out.println(browserName);
 
 if(browserName.equals("chrome"))
 {
-	 System.setProperty("webdriver.chrome.driver", "C:\\Users\\abhaysingh09\\Downloads\\chromedriver_win32\\chromedriver.exe");
-	driver= new ChromeDriver();
-	driver.manage().window().maximize();
+	 //System.setProperty("webdriver.chrome.driver", "C:\\Users\\pranshuambwani\\eclipse-workspace\\DevOpsTest\\src\\test\\resources\\chromedriver.exe");
+	 WebDriverManager.chromedriver().setup();
+	 driver= new ChromeDriver();
+	 driver.manage().window().maximize();
 		//execute in chrome driver
 	
 }
